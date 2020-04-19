@@ -8,13 +8,33 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
+    let memeAttributes: [NSAttributedString.Key: Any] = [
+        .strokeColor: UIColor.black,
+        .foregroundColor: UIColor.white,
+        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .strokeWidth:  -5.0
+    ]
+    
+    func configureTextField(textField: UITextField, text: String) {
+        textField.text = text
+        textField.delegate = self
+        textField.textAlignment = .center
+        textField.defaultTextAttributes = memeAttributes
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureTextField(textField: topTextField, text: "TOP")
+        configureTextField(textField: bottomTextField, text: "BOTTOM")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
