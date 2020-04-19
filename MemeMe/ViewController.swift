@@ -32,7 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         let pickerController = UIImagePickerController()
 
         pickerController.delegate = self
-        pickerController.sourceType = .camera
+        pickerController.sourceType = source
 
         present(pickerController, animated: true, completion: nil)
     }
