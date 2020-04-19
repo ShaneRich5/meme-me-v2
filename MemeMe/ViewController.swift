@@ -11,9 +11,12 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     let memeAttributes: [NSAttributedString.Key: Any] = [
@@ -38,6 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        shareButton.isEnabled = false
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
@@ -45,6 +49,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    func save() {
+        let memeImage = generateMemedImage()
+        
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memeImage)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        topToolbar.isHidden = true
+        bottomToolbar.isHidden = true
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        topToolbar.isHidden = false
+        bottomToolbar.isHidden = false
+        
+        return memedImage
+    }
+    
+    @IBAction func shareMeme(_ sender: Any) {
+        let image = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if completed && error == nil {
+                self.save()
+            }
+        }
+
+        
+        present(controller, animated: true)
     }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
@@ -67,6 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
+            shareButton.isEnabled = true
         }
         
         dismiss(animated: true, completion: nil)
