@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topToolbar: UIToolbar!
@@ -19,6 +19,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    // added to manage managing magic strings
+    
+    enum MemeTextDefault: String {
+        case top = "TOP", bottom = "BOTTOM"
+    }
+    
     let memeAttributes: [NSAttributedString.Key: Any] = [
         .strokeColor: UIColor.black,
         .foregroundColor: UIColor.white,
@@ -26,10 +32,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         .strokeWidth:  -5.0
     ]
     
-    func configureTextField(textField: UITextField, text: String) {
+    func configureTextField(textField: UITextField, text: MemeTextDefault) {
         textField.defaultTextAttributes = memeAttributes
         textField.textAlignment = NSTextAlignment.center
-        textField.text = text
+        textField.text = text.rawValue
     }
     
     override func viewDidLoad() {
@@ -44,8 +50,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = nil
         shareButton.isEnabled = false
         imageView.backgroundColor = .black
-        configureTextField(textField: topTextField, text: "TOP")
-        configureTextField(textField: bottomTextField, text: "BOTTOM")
+        configureTextField(textField: topTextField, text: .top)
+        configureTextField(textField: bottomTextField, text: .bottom)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func save() {
         let memeImage = generateMemedImage()
         
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memeImage)
+        _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memeImage)
     }
     
     func generateMemedImage() -> UIImage {
@@ -116,19 +122,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(pickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            imageView.image = image
-            shareButton.isEnabled = true
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @objc func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isEditing {
             view.frame.origin.y -= getKeyboardHeight(notification)
@@ -153,16 +146,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
-            textField.text = ""
-        }
     }
 }
