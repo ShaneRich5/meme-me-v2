@@ -11,12 +11,13 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     

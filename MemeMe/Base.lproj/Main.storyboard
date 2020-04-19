@@ -78,8 +78,10 @@
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="vrf-Qf-o3Z" id="bN4-wz-1iG"/>
+                        <outlet property="bottomTextField" destination="71Q-FR-baC" id="ebH-KN-zCz"/>
                         <outlet property="cameraButton" destination="iRr-9i-ky6" id="glB-F5-bG4"/>
                         <outlet property="imageView" destination="xLg-dI-cdP" id="A08-tM-S1u"/>
+                        <outlet property="topTextField" destination="i1w-uc-AxR" id="eHx-7P-GMg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
