@@ -36,13 +36,13 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jyG-7O-fUG"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1w-uc-AxR" userLabel="Top Text Field">
-                                <rect key="frame" x="159" y="122" width="97" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1w-uc-AxR" userLabel="Top Text Field">
+                                <rect key="frame" x="159" y="122" width="96" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71Q-FR-baC" userLabel="Bottom Text Field">
-                                <rect key="frame" x="159" y="734" width="97" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71Q-FR-baC" userLabel="Bottom Text Field">
+                                <rect key="frame" x="159" y="734" width="96" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -50,17 +50,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="42W-sN-2Io" secondAttribute="trailing" id="BbO-D3-3pn"/>
+                            <constraint firstItem="3JR-VS-B8J" firstAttribute="top" secondItem="71Q-FR-baC" secondAttribute="bottom" constant="45" id="Eiy-Z4-Kj9"/>
                             <constraint firstItem="42W-sN-2Io" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ma5-p2-RII"/>
                             <constraint firstItem="3JR-VS-B8J" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pzh-bc-XOD"/>
                             <constraint firstItem="71Q-FR-baC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Sg6-MA-UFV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xLg-dI-cdP" secondAttribute="trailing" id="TwL-un-ibF"/>
+                            <constraint firstItem="i1w-uc-AxR" firstAttribute="top" secondItem="42W-sN-2Io" secondAttribute="bottom" constant="34" id="WtF-f2-MY7"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="top" secondItem="42W-sN-2Io" secondAttribute="bottom" id="Z6T-be-K7G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3JR-VS-B8J" secondAttribute="trailing" id="ey8-oX-etd"/>
                             <constraint firstItem="42W-sN-2Io" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fBb-dW-619"/>
+                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="159" id="gbx-br-87K"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="bottom" secondItem="3JR-VS-B8J" secondAttribute="top" id="qpr-5L-sfS"/>
                             <constraint firstItem="i1w-uc-AxR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="smg-1a-5A3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3JR-VS-B8J" secondAttribute="bottom" id="vKy-FB-KT8"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wUt-8D-5SY"/>
+                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="i1w-uc-AxR" secondAttribute="leading" id="zp1-yh-aBr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
