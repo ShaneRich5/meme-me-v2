@@ -41,6 +41,10 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Required to capture new images to be used in memes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required to retreive existing photos to be used in memes</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
