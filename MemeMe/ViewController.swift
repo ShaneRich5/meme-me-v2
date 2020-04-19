@@ -95,6 +95,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
+        view.endEditing(true)
         configureEditor()
     }
     
