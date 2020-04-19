@@ -28,13 +28,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func configureTextField(textField: UITextField, text: String) {
         textField.defaultTextAttributes = memeAttributes
-        textField.text = text
-        textField.delegate = self
         textField.textAlignment = NSTextAlignment.center
+        textField.text = text
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureEditor()
+        
+        topTextField.delegate = self
+        bottomTextField.delegate = self
+    }
+    
+    func configureEditor() {
+        imageView.image = nil
+        shareButton.isEnabled = false
+        imageView.backgroundColor = .black
         configureTextField(textField: topTextField, text: "TOP")
         configureTextField(textField: bottomTextField, text: "BOTTOM")
     }
@@ -83,6 +92,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
         present(controller, animated: true)
+    }
+    
+    @IBAction func cancelMeme(_ sender: Any) {
+        configureEditor()
     }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
