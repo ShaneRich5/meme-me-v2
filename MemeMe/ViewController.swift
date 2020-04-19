@@ -82,7 +82,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
 
-        
         present(controller, animated: true)
     }
     
