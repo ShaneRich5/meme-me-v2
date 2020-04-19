@@ -12,8 +12,7 @@ import UIKit
 // image picker logic
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
@@ -26,5 +25,25 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+// text field logic
+
+extension MemeEditorViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let defaultTopValue = MemeTextDefault.top.rawValue
+        let defaultBottomValue = MemeTextDefault.bottom.rawValue
+        
+        let hasDefaultText = textField.text == defaultTopValue || textField.text == defaultBottomValue
+        
+        if hasDefaultText {
+            textField.text = ""
+        }
+    }
 }
