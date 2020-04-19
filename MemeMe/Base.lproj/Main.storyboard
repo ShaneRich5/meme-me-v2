@@ -10,7 +10,7 @@
         <!--Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Meme View Controller" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Meme View Controller" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,11 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7CO-tI-t2F"/>
                                     <barButtonItem title="Item" image="camera.fill" catalog="system" id="iRr-9i-ky6"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2N5-cV-S7t"/>
-                                    <barButtonItem title="Album" id="vrf-Qf-o3Z"/>
+                                    <barButtonItem title="Album" id="vrf-Qf-o3Z" userLabel="Album Item">
+                                        <connections>
+                                            <action selector="pickImageFromAlbum:" destination="BYZ-38-t0r" id="dfq-Lj-5OY"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jyG-7O-fUG"/>
                                 </items>
                             </toolbar>
@@ -50,24 +54,28 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="42W-sN-2Io" secondAttribute="trailing" id="BbO-D3-3pn"/>
-                            <constraint firstItem="3JR-VS-B8J" firstAttribute="top" secondItem="71Q-FR-baC" secondAttribute="bottom" constant="45" id="Eiy-Z4-Kj9"/>
+                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="i1w-uc-AxR" secondAttribute="leading" id="Chf-hg-ThV"/>
                             <constraint firstItem="42W-sN-2Io" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ma5-p2-RII"/>
                             <constraint firstItem="3JR-VS-B8J" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pzh-bc-XOD"/>
+                            <constraint firstItem="3JR-VS-B8J" firstAttribute="top" secondItem="71Q-FR-baC" secondAttribute="bottom" constant="45" id="Sdz-X2-5by"/>
                             <constraint firstItem="71Q-FR-baC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Sg6-MA-UFV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xLg-dI-cdP" secondAttribute="trailing" id="TwL-un-ibF"/>
-                            <constraint firstItem="i1w-uc-AxR" firstAttribute="top" secondItem="42W-sN-2Io" secondAttribute="bottom" constant="34" id="WtF-f2-MY7"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="top" secondItem="42W-sN-2Io" secondAttribute="bottom" id="Z6T-be-K7G"/>
+                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="159" id="eBL-UE-Yq9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3JR-VS-B8J" secondAttribute="trailing" id="ey8-oX-etd"/>
                             <constraint firstItem="42W-sN-2Io" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fBb-dW-619"/>
-                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="159" id="gbx-br-87K"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="bottom" secondItem="3JR-VS-B8J" secondAttribute="top" id="qpr-5L-sfS"/>
                             <constraint firstItem="i1w-uc-AxR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="smg-1a-5A3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3JR-VS-B8J" secondAttribute="bottom" id="vKy-FB-KT8"/>
                             <constraint firstItem="xLg-dI-cdP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wUt-8D-5SY"/>
-                            <constraint firstItem="71Q-FR-baC" firstAttribute="leading" secondItem="i1w-uc-AxR" secondAttribute="leading" id="zp1-yh-aBr"/>
+                            <constraint firstItem="i1w-uc-AxR" firstAttribute="top" secondItem="42W-sN-2Io" secondAttribute="bottom" constant="34" id="x0a-3H-zVF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="albumButton" destination="vrf-Qf-o3Z" id="bN4-wz-1iG"/>
+                        <outlet property="imageView" destination="xLg-dI-cdP" id="A08-tM-S1u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
