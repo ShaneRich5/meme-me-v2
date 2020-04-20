@@ -74,6 +74,9 @@ class MemeEditorViewController: UIViewController {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
+//        print("new meme: \(meme)")
+//        print("appDelegate.memes: \(appDelegate.memes)")
     }
     
     func generateMemedImage() -> UIImage {
@@ -92,16 +95,17 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func shareMeme(_ sender: Any) {
-        let image = generateMemedImage()
-        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        
-        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            if completed && error == nil {
-                self.save()
-            }
-        }
-
-        present(controller, animated: true)
+        self.save()
+//        let image = generateMemedImage()
+//        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//
+//        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+//            if completed && error == nil {
+//                self.save()
+//            }
+//        }
+//
+//        present(controller, animated: true)
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
