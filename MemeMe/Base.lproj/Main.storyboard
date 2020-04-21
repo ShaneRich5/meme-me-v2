@@ -4,26 +4,46 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sent Memes-->
+        <!--Sent Memes Collection View Controller-->
         <scene sceneID="9OG-uE-aGH">
             <objects>
-                <viewController id="g2v-UM-CLl" sceneMemberID="viewController">
+                <viewController id="g2v-UM-CLl" userLabel="Sent Memes Collection View Controller" customClass="SentMemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NHp-Sd-aw9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KV-Jm-Zm2">
-                                <rect key="frame" x="186" y="438" width="77" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cxe-c9-inM">
+                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A4L-Ok-QtA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Vbq-fq-0vF" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zHz-ob-nkz">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Cxe-c9-inM" firstAttribute="top" secondItem="Kls-ml-rZZ" secondAttribute="top" id="Hhd-Zk-3yV"/>
+                            <constraint firstItem="Kls-ml-rZZ" firstAttribute="trailing" secondItem="Cxe-c9-inM" secondAttribute="trailing" id="Qjh-Gh-QBd"/>
+                            <constraint firstItem="Kls-ml-rZZ" firstAttribute="bottom" secondItem="Cxe-c9-inM" secondAttribute="bottom" id="U5F-fw-nQx"/>
+                            <constraint firstItem="Cxe-c9-inM" firstAttribute="leading" secondItem="Kls-ml-rZZ" secondAttribute="leading" id="Vef-qd-mzT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Kls-ml-rZZ"/>
                     </view>
                     <toolbarItems/>
@@ -35,15 +55,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Cxe-c9-inM" id="nPk-Md-tXE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyI-ux-AUv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="363.768115942029" y="441.96428571428572"/>
         </scene>
-        <!--Sent Memes List-->
+        <!--Sent Memes List View Controller-->
         <scene sceneID="jO8-Nk-UFK">
             <objects>
-                <viewController id="yuw-rQ-BUF" userLabel="Sent Memes List" customClass="SentMemeListViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yuw-rQ-BUF" userLabel="Sent Memes List View Controller" customClass="SentMemeListViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V7d-1k-JWG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,7 +143,7 @@
         <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +272,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jKM-lA-9F4"/>
+        <segue reference="NXC-zy-9tH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="96"/>
