@@ -21,11 +21,13 @@ class SentMemeListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tableView.reloadData()
     }
 }
 
-extension SentMemeListViewController: UITableViewDataSource, UITableViewDelegate {
+extension SentMemeListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -42,5 +44,16 @@ extension SentMemeListViewController: UITableViewDataSource, UITableViewDelegate
         cell.imageView?.image = meme.memeImage
         
         return cell
+    }
+}
+
+extension SentMemeListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: MemeDetailViewController.identifier) as! MemeDetailViewController
+        
+        let meme = self.memes[(indexPath as NSIndexPath).row]
+        detailController.meme = meme
+        self.navigationController!.pushViewController(detailController, animated: true)
     }
 }
