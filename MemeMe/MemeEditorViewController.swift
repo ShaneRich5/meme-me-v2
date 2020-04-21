@@ -56,6 +56,7 @@ class MemeEditorViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         shareButton.isEnabled = false
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
@@ -64,6 +65,7 @@ class MemeEditorViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func save() {
@@ -109,8 +111,8 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
-        view.endEditing(true)
-        configureEditor()
+        print("cancel clicked")
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
