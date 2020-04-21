@@ -76,9 +76,6 @@ class MemeEditorViewController: UIViewController {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
-        
-//        print("new meme: \(meme)")
-//        print("appDelegate.memes: \(appDelegate.memes)")
     }
     
     func generateMemedImage() -> UIImage {
@@ -97,21 +94,19 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func shareMeme(_ sender: Any) {
-        self.save()
-//        let image = generateMemedImage()
-//        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-//
-//        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-//            if completed && error == nil {
-//                self.save()
-//            }
-//        }
-//
-//        present(controller, animated: true)
+        let image = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+
+        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if completed && error == nil {
+                self.save()
+            }
+        }
+
+        present(controller, animated: true)
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
-        print("cancel clicked")
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -158,3 +153,43 @@ class MemeEditorViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
+
+// image picker logic
+
+extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            imageView.image = image
+            shareButton.isEnabled = true
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// text field logic
+
+extension MemeEditorViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let defaultTopValue = MemeTextDefault.top.rawValue
+        let defaultBottomValue = MemeTextDefault.bottom.rawValue
+        
+        let hasDefaultText = textField.text == defaultTopValue || textField.text == defaultBottomValue
+        
+        if hasDefaultText {
+            textField.text = ""
+        }
+    }
+}
+
