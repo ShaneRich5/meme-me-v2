@@ -10,21 +10,33 @@ import UIKit
 
 class SentMemeCollectionViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var memes = [Meme]()
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        self.memes = appDelegate.memes
+        self.collectionView.dataSource = self
+        self.collectionView.reloadData()
+        
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension SentMemeCollectionViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.memes.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemeCollectionViewCell.reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
+        
+        let meme = self.memes[(indexPath as NSIndexPath).row]
+        
+        cell.configure(with: meme)
+        
+        return cell
     }
-    */
-
 }
