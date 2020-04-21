@@ -20,19 +20,38 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A4L-Ok-QtA">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="124" height="123"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Vbq-fq-0vF" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionViewCell" id="Vbq-fq-0vF" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="123"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zHz-ob-nkz">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kz-Lc-3k4">
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="123"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="124" id="Akg-JD-Ljv"/>
+                                                        <constraint firstAttribute="height" constant="123" id="Nhm-6u-vUq"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="1kz-Lc-3k4" secondAttribute="trailing" id="GJ3-S7-TE4"/>
+                                                <constraint firstAttribute="bottom" secondItem="1kz-Lc-3k4" secondAttribute="bottom" id="Xn4-IJ-HIN"/>
+                                                <constraint firstItem="1kz-Lc-3k4" firstAttribute="leading" secondItem="zHz-ob-nkz" secondAttribute="leading" id="uva-DW-4FY"/>
+                                                <constraint firstItem="1kz-Lc-3k4" firstAttribute="top" secondItem="zHz-ob-nkz" secondAttribute="top" id="y79-ZN-7cG"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="124" height="123"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="1kz-Lc-3k4" id="xyP-fN-cUA"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -56,7 +75,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="collectionView" destination="Cxe-c9-inM" id="nPk-Md-tXE"/>
+                        <outlet property="collectionView" destination="Cxe-c9-inM" id="wKY-la-GDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyI-ux-AUv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

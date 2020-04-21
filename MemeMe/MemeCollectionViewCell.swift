@@ -8,6 +8,13 @@
 
 import UIKit
 
+
 class MemeCollectionViewCell: UICollectionViewCell {
+    public static var reuseIdentifier = "MemeCollectionViewCell"
     
+    @IBOutlet weak var imageView: UIImageView!
+    
+    func configure(with meme: Meme) {
+        imageView.image = meme.memeImage
+    }
 }
